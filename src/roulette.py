@@ -49,11 +49,14 @@ class Roulette():
         self.player_info[player] = data
    
     def set_times(self, times):
-        self.times = times   
+        self.times = times + 1  
         
     def debug(self):
+        for name, value in self.player_info.items():
+            logger.debug("=====bet info. rounder=%s, times=%s. \
+                        player=%s, amount=%s", self.rounder, self.times, name, value)
         logger.debug("####### Roulette info. rounder=%s, times=%s. \
-                pot=%s, bet=%s", self.rounder, self.times, self.pot_total, self.bet)       
+                pot=%s, bet=%s", self.rounder, self.times, self.pot_total, self.bet)   
     
     def check_this_round(self):
         pot = [p["pot"] for p in self.player_info.values()]

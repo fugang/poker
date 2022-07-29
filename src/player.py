@@ -107,7 +107,7 @@ class Player:
         roulette.update_player(self.name, extra)
         ss1 = colored.magenta(f"player[")
         ss2 = self.color_name()
-        ss3 = colored.magenta(f"] check")
+        ss3 = colored.magenta(f"] call")
         puts(ss1 + ss2 + ss3)
         logger.info("player=%s do call. amount=$%s", self.name, self.amount)
         return extra
@@ -155,16 +155,13 @@ class Player:
             return self.check(roulette)
         elif roulette.rounder == 2:
             position = roulette.get_player_position(self.name)
-            if position == 1:
-                if roulette.times == 1:
+            if position == 0:
+                if roulette.times == 0:
                     return self.bet(roulette, 5)
                 else:
                     return self.call(roulette)
             else:
-                if roulette.times == 3:
-                    return self.check(roulette)
-                else:
-                    return self.do_raise(roulette)
+                return self.do_raise(roulette)
       
     def act(self, roulette):
         data = self.do_strategy(roulette)

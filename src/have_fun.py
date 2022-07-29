@@ -37,9 +37,7 @@ class RouletteBattle():
             for _ in range(2):
                 two_cards.append(self.cards.pop())
             player.pre_flop(self.rult, amount, two_cards, index)
-   
-        self.debug()
-                
+        self.debug()    
         for i in range(3):
             tag = self.settle(i)
             if tag:
@@ -52,9 +50,6 @@ class RouletteBattle():
             self.gameover()
     
     def debug(self):
-        for name, value in self.rult.player_info.items():
-            logger.debug("=====bet info. rounder=%s, times=%s. \
-                        player=%s, amount=%s", self.rult.rounder, self.rult.times, name, value)
         for p in self.players:
             logger.debug("+++++player info. rounder=%s, times=%s. \
                     player=%s, amount=%s", self.rult.rounder, self.rult.times, p.name, p.amount)
@@ -84,10 +79,12 @@ class RouletteBattle():
         for p in self.players:
             p.flop(round_cards)
         self.desk_cards.extend(round_cards)
+        self.debug() 
         for i in range(3):
             tag = self.settle(i)
             if tag:
                 break
+        self.debug()
     
     def turn_step(self):
         self.rounder = 3
