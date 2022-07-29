@@ -82,7 +82,7 @@ class RouletteBattle():
         for i in range(3):
             round_cards.append(self.cards.pop())
         for p in self.players:
-            p.round(round_cards)
+            p.flop(round_cards)
         self.desk_cards.extend(round_cards)
         for i in range(3):
             tag = self.settle(i)

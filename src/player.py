@@ -161,15 +161,13 @@ class Player:
                 else:
                     return self.call(roulette)
             else:
-                if roultte.times == 3:
+                if roulette.times == 3:
                     return self.check(roulette)
                 else:
                     return self.do_raise(roulette)
       
     def act(self, roulette):
         data = self.do_strategy(roulette)
-        roulette.update(self.name, data, position)
-        
         
     def __lt__(self, other):
         return self.max_hand < other.max_hand

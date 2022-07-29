@@ -35,7 +35,7 @@ class Roulette():
         self.new_round()
         self.rounder = 4
         
-    def update_bet(bet):
+    def update_bet(self, bet):
         self.bet = max(self.bet, bet)    
         
     def update_player(self, player, pot, position=None):
@@ -63,7 +63,7 @@ class Roulette():
             return False
 
     def get_player_position(self, name):
-        data = self.player_info(name)
+        data = self.player_info[name]
         if data is None:
             raise PlayerError    
         return data["position"]
